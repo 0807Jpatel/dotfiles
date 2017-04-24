@@ -1,0 +1,10 @@
+#!/bin/sh 
+
+myvpn=$(ping -4 -n -c 1 10.4.0.1 | awk '/received/ { print $6; }')
+
+if [ "$myvpn" = "0%" ];then
+    echo -e " ON"
+else
+    echo -e " OFF"
+fi 
+

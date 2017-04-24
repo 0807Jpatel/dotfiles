@@ -1,0 +1,275 @@
+;:set syn=dosini
+
+[global/wm]
+#margin-top = 8
+#margin-bottom = 8
+#margin-left = 8
+#margin-right = 8
+
+
+[colors]
+;orange = #FF6200
+;orange = #d65d0e
+darkgray = ${xrdb:color8}
+orange = ${xrdb:color9}
+white = #ebdbb2
+gray = #585858
+black = #090909
+red = #c795ae
+blue = #95aec7
+yellow = #c7ae95
+green = #aec795
+#background = #1f222d
+background = #262626
+background-alt = #4e4e4e
+foreground = #dfdfdf
+#foreground = ${xrdb:foreground}
+foreground-alt = #4e4e4e
+primary = #1f222d
+secondary = #FF6200
+alert = #fb4934
+
+[bar/bar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 21
+;offset-x = 1%
+;offset-y = 1%
+fixed-center = true
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 8
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+modules-right = filesystem separator  cpu separator memory separator battery separator xbacklight separator volume separator date separator powermenu
+modules-center = i3 
+modules-left = spotify
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 2
+underline-color = ${colors.white}
+
+tray-detached = true
+tray-position = left
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+tray-padding = 2
+tray-transparent = false
+tray-scale = 1.0
+
+font-0 = "monospace:size=8;2"
+font-1 = "FontAwesome:size=8;2"
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify.sh
+interval = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = false
+wrapping-scroll = false
+
+#label-focused = %icon%
+;label-focused-font = 1
+label-focused-background = ${colors.background-alt}
+;label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.white}
+label-visible-underline = ${colors.foreground}
+label-focused-padding-left = 0
+label-focused-padding-right = 1
+
+label-unfocused-padding-right = 1
+label-unfocused-padding-left = 0
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.darkgray}
+label-occupied-padding = 2
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/xbacklight]
+type = internal/xbacklight
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+format-padding = 1
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+format-mounted-prefix = " "
+format-mounted-foreground = #928374
+label-mounted = %percentage_used%%
+label-mounted-foreground = ${root.foreground}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = #928374
+format-mounted-padding = 1
+format-unmounted-padding = 1
+
+[module/date]
+type = internal/date
+date-alt =   %A, %d %B %Y %H:%M
+date = %{F#928374}%{F-} %H:%M
+interval = 5
+;format-underline = ${colors.white}
+;format-background = ${colors.black}
+format-foreground = ${colors.foreground}
+format-padding = 1
+
+label-separator = |
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+label-padding = 2
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.white}
+label-muted = sound muted
+format-padding = 2
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+format-muted-padding = 1
+format-volume-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = #928374
+;format-underline = #f90000
+label = %percentage%%
+label-foreground = ${root.foreground}
+format-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = #928374
+;format-underline = #4bffdc
+label = %percentage_used%%
+label-foreground = ${root.foreground}
+format-padding = 1
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = #4e4e4e
+
+
+[module/battery]
+type = internal/battery
+full-at = 100
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% 
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+
+format-full = <label-full>
+format-full-prefix =  
+format-full-prefix-foreground = #55aa55
+
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =   
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1-foreground = ${colors.white}
+ramp-capacity-2-foreground = #55aa55
+
+animation-charging-0 =  
+animation-charging-1 =   
+animation-charging-2 =  
+animation-charging-foreground = #55aa55
+animation-charging-framerate = 750
+
+format-full-padding = 1
+format-charging-padding = 1
+format-discharging-padding = 1
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close = cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+format-padding = 1
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+; vim:ft=dosini
