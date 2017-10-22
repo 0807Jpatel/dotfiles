@@ -12,10 +12,10 @@
 set $mod Mod4
 
 #i3-gaps config
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 hide_edge_borders both
-gaps inner 8
-gaps outer 6
+gaps inner 7
+gaps outer 4
 new_window pixel 1
 new_float pixel 1
 #smart_borders on
@@ -174,11 +174,11 @@ bindsym $mod+r mode "resize"
   for_window [class="ffplay"] floating enable
 
 # Colors
-set $bg-color			#ebdbb2
+set $bg-color			#458588
 set $inactive-bg-color		#928374	
 set $text-color			#f3f4f5
 set $inactive-text-color	#676E7D
-set $urgent-bg-color		#ebdbb2
+set $urgent-bg-color		#458588
 
 # Widow Colours
 #				border			background			text
@@ -210,7 +210,7 @@ client.urgent			$urgent-bg-color	$urgent-bg-color		$text-color			$urgent-bg-colo
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
-bindsym $mod+shift+x exec ~/.i3/lock.sh
+bindsym $mod+shift+x exec ~/.config/i3/lock.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -236,4 +236,7 @@ exec_always nm-applet
 exec_always feh --bg-scale ~/Pictures/test.jpg
 exec_always redshift-gtk
 bindsym Print exec gnome-screenshot
+bindsym $mod+shift+s exec gnome-screenshot -a
 exec --no-startup-id polybar bar
+exec_always libinput-gestures-setup start
+exec_always xinput set-prop 15 "libinput Tapping Enabled" 1

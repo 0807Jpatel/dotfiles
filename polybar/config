@@ -62,7 +62,7 @@ tray-position = left
 tray-offset-x = 0
 tray-offset-y = 0
 ;tray-maxsize = 16
-tray-padding = 2
+tray-padding = 2 
 tray-transparent = false
 tray-scale = 1.0
 
@@ -84,7 +84,7 @@ wrapping-scroll = false
 ;label-focused-font = 1
 label-focused-background = ${colors.background-alt}
 ;label-focused-underline= ${colors.primary}
-label-focused-underline= ${colors.white}
+label-focused-underline= #458588
 label-visible-underline = ${colors.foreground}
 label-focused-padding-left = 0
 label-focused-padding-right = 1
