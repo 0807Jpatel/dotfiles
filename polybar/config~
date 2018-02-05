@@ -141,7 +141,7 @@ label-focused = %name%
 label-focused-background = #383838
 label-focused-foreground = #fff
 label-focused-overline = $cc333333
-label-focused-underline = $cc333333
+#label-focused-underline = $cc333333
 label-focused-padding = 1
 label-focused-margin-left = 1
 
