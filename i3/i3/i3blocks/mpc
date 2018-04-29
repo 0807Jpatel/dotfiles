@@ -1,0 +1,9 @@
+#!/bin/sh
+case $BLOCK_BUTTON in
+        1) mpc prev ;;
+        2) mpc toggle ;;
+        3) mpc next ;;
+esac
+
+mpc current
+

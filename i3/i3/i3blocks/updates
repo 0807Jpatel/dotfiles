@@ -1,0 +1,10 @@
+#!/bin/sh 
+
+Update=$(checkupdates | cut -d " " -f1 | wc -l)
+
+if [ "$Update" = "0" ];then 
+    echo -e "0 "
+else
+    echo -e "$Update "
+    exit 33
+fi 

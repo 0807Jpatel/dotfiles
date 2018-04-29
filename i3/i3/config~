@@ -14,8 +14,8 @@ set $mod Mod4
 #i3-gaps config
 for_window [class="^.*"] border pixel 1
 hide_edge_borders both
-gaps inner 7
-gaps outer 4
+gaps inner 10
+gaps outer 7
 new_window pixel 1
 new_float pixel 1
 smart_borders on
