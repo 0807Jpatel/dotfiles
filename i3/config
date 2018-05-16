@@ -18,7 +18,7 @@ gaps inner 7
 gaps outer 4
 new_window pixel 1
 new_float pixel 1
-#smart_borders on
+smart_borders on
 #smart_gaps on
 popup_during_fullscreen smart
 
@@ -102,8 +102,8 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1:"
-set $workspace2 "2:"
+set $workspace1 "1:"
+set $workspace2 "2:"
 set $workspace3 "3:"
 set $workspace4 "4"
 set $workspace5 "5"
@@ -234,7 +234,7 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 exec_always nm-applet
-exec_always feh --bg-scale ~/Pictures/test2.png
+exec_always feh --bg-scale ~/Pictures/tg2.png
 exec_always redshift-gtk
 bindsym Print exec gnome-screenshot
 bindsym $mod+shift+s exec gnome-screenshot -a

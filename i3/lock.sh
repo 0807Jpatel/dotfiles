@@ -14,7 +14,7 @@ else
     song="$title - $artist"
 fi
 
-dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
 ~/.i3lock-color/x86_64-pc-linux-gnu/i3lock \
     -i /tmp/screen.png \
     --blur=3 \

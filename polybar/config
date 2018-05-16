@@ -30,7 +30,7 @@ secondary = #FF6200
 alert = #fb4934
 #newcolor
 background = #222
-foreground = #eee
+foreground = #43435B
 linecolor = #fba922
 bordercolor = #333
 accent = #e60053
@@ -80,6 +80,7 @@ type = custom/script
 exec = ~/.config/polybar/spotify.sh
 interval = 2
 click-left = playerctl play-pause
+label-foreground = #B6B4C1
 
 /**
 #[module/mpd]
@@ -169,8 +170,7 @@ interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = " "
 format-connected-prefix-foreground = #666
-label-connected = %essid%%downspeed:7%
-
+label-connected = %downspeed% %essid:7%
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-prefix = " "
 ;format-disconnected-prefix-foreground = #666
@@ -182,13 +182,28 @@ ramp-signal-foreground = #666
 lable-connected-padding = 2
 
 [module/xbacklight]
+;type = internal/xbacklight
+;format = <ramp> <label>
+;ramp-0 = 
+;ramp-1 = 
+;ramp-2 = 
+;ramp-foreground = #666
+;label-foreground = ${root.foreground}
+;format-padding = 1
 type = internal/xbacklight
-format = <ramp> <label>
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #666
-label-foreground = ${root.foreground}
+format = <label> <bar>
+label = 
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
 format-padding = 1
 
 [module/filesystem]
