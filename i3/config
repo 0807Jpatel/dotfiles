@@ -12,14 +12,17 @@
 set $mod Mod4
 
 #i3-gaps config
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
+# hide_edge_borders smart
+# default_border pixel 8
 hide_edge_borders both
-gaps inner 7
-gaps outer 4
+gaps inner 2
+gaps outer 1
+gaps top 0
 new_window pixel 1
 new_float pixel 1
 smart_borders on
-#smart_gaps on
+# smart_gaps on
 popup_during_fullscreen smart
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -102,16 +105,16 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1:"
-set $workspace2 "2:"
-set $workspace3 "3:"
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace0 "10:"
+set $workspace0 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -151,10 +154,10 @@ bindsym $mod+Shift+e exec killall xss-lock ; exec i3-msg exit
 # resize window (you can also use the mouse for that)
 mode "resize" {
        
-        bindsym j resize shrink width 1 px or 1 ppt
-        bindsym k resize grow height 1 px or 1 ppt
-        bindsym l resize shrink height 1 px or 1 ppt
-        bindsym semicolon resize grow width 1 px or 1 ppt
+        bindsym h resize shrink width 1 px or 1 ppt
+        bindsym j resize grow height 1 px or 1 ppt
+        bindsym k resize shrink height 1 px or 1 ppt
+        bindsym l resize grow width 1 px or 1 ppt
 
         # These bindings trigger as soon as you enter the resize mode
         bindsym Left resize shrink width 1 px or 1 ppt
@@ -175,11 +178,11 @@ bindsym $mod+r mode "resize"
   for_window [class="ffplay"] floating enable
 
 # Colors
-set $bg-color			#458588
-set $inactive-bg-color		#928374	
+set $bg-color			#ff6f5e
+set $inactive-bg-color		#00000000	
 set $text-color			#f3f4f5
 set $inactive-text-color	#676E7D
-set $urgent-bg-color		#458588
+set $urgent-bg-color		#ff6f5e
 
 # Widow Colours
 #				border			background			text
@@ -234,11 +237,12 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 exec_always nm-applet
-exec_always feh --bg-scale ~/Pictures/tg2.png
+exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
+# exec_always --no-startup-id ~/.config/i3/blurme
 exec_always redshift-gtk
 bindsym Print exec gnome-screenshot
 bindsym $mod+shift+s exec gnome-screenshot -a
 exec --no-startup-id polybar bar
 exec_always libinput-gestures-setup start
 exec_always xinput set-prop 15 "libinput Tapping Enabled" 1
-exec_always xcompmgr -c -n -f -I .2 -O .1
+exec_always compton
