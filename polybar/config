@@ -1,64 +1,43 @@
-;:set syn=dosini
-
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-#margin-left = 8
-#margin-right = 8
-
 
 [colors]
-;orange = #FF6200
-;orange = #d65d0e
-darkgray = ${xrdb:color8}
-orange = ${xrdb:color9}
-white = #ebdbb2
-gray = #585858
-black = #090909
-red = #c795ae
-blue = #95aec7
-yellow = #c7ae95
-green = #aec795
-#background = #1f222d
-#background = #262626
-background-alt = #4e4e4e
-#foreground = #dfdfdf
-#foreground = ${xrdb:foreground}
-foreground-alt = #4e4e4e
-primary = #1f222d
-secondary = #FF6200
-alert = #fb4934
-#newcolor
-background = #222
-foreground = #43435B
-linecolor = #fba922
-bordercolor = #333
-accent = #e60053
+background=#00181818
+light-background=#282828
+foreground=#989898
+dark-foreground=d8d8d8
+red=#ab4642
+green=#a1b56c
+dark-green=#006400
+yellow=#f7ca88
+blue=#7cafc2
+purple=#ba8baf
+aqua=#86c1b9
+gray=#d8d8d8
+dark-gray=#585858
+orage=#dc9656
+dark-orange=#a16946
+white=#e8e8e8
+
+
 
 [bar/bar]
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 24
-;offset-x = 1%
-;offset-y = 1%
 fixed-center = true
-
-locale = en_US.UTF-8
-
-enable-ipc = true
 
 padding-left = 1
 padding-right = 0
-
 module-margin-left = 0
 module-margin-right = 0
 
 modules-right = wifi volume xbacklight filesystem cpu memory battery date  
 modules-center = i3 
-modules-left = spotify
+modules-left = playerctl
 
-background = #00222222
-foreground = ${colors.foreground}
+background = ${colors.background}
+foreground = ${colors.dark-gray}
 
 underline-size = 2
 underline-color = ${colors.white}
@@ -67,68 +46,27 @@ tray-detached = false
 tray-position = left
 tray-offset-x = 0
 tray-offset-y = 0
-;tray-maxsize = 16
-;tray-padding = 2 
-tray-transparent = true
+;tray-maxsize = 3
+tray-padding = 2 
 tray-scale = 1.0
 
+locale = en_US.UTF-8
+enable-ipc = true
 font-0 = "monospace:size=8;2"
-font-1 = "FontAwesome:size=8;2"
+font-1 = "FontAwesome:size=9;2"
 
-[module/spotify]
+
+
+[module/playerctl]
 type = custom/script
-exec = ~/.config/polybar/spotify.sh
+exec = ~/.config/polybar/playerctl.sh
 interval = 2
 click-left = playerctl play-pause
-label-foreground = #B6B4C1
+label-foreground = ${colors.foreground}
 
-/**
-#[module/mpd]
-#type = internal/mpd
-#
-#host = 127.0.0.1
-#port = 6601
-#
-#format-online = %{F#88} %{F-} <label-song> <bar-progress> <icon-prev> <icon-stop> <toggle> <icon-next>
-#format-online-spacing = 0
-#format-online-underline = #cc333333
-#format-online-padding = 3
-#
-#format-offline = <label-offline>
-#format-offline-foreground = #777
-#
-#label-offline = mpd is off
-#
-#label-song-maxlen = 45
-#label-song-ellipsis = true
-#
-#label-time-foreground = #777
-#
-#icon-prev = 
-#icon-stop = 
-#icon-play = 
-#icon-pause = 
-#icon-next = 
-#
-##files
-#mpd_music_dir = ~/Music
-#ncmpcpp_directory = ~/.ncmpcpp
-#mpd_connection_timeout = "10"
-#mpd_crossfade_time = "5"
-#toggle-off-foreground = #777
-#
-#bar-progress-width = 10
-#bar-progress-indicator = 
-#bar-progress-indicator-foreground = #bb
-#bar-progress-fill = ─
-#bar-progress-fill-foreground = #bb
-#bar-progress-fill-font = 3
-#bar-progress-empty = ─
-#bar-progress-empty-foreground = #44
-#bar-progress-empty-font = 3
-#**/
+
+
 [module/i3]
-
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -136,50 +74,49 @@ wrapping-scroll = true
 strip-wsnumbers = true
 
 label-mode = %mode%
-label-mode-background = ${colors.accent}
+label-mode-background = ${colors.green}
+label-mode-padding = 1
 
 label-focused = %name%
-label-focused-background = #383838
-label-focused-foreground = #fff
-label-focused-overline = $cc333333
-label-focused-underline = $cc333333
+label-focused-background = ${colors.light-background}
+label-focused-foreground = ${colors.white}
+label-focused-underline = ${colors.purple}
 label-focused-padding = 1
 label-focused-margin-left = 1
 
-label-unfoxued = %name%
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.dark-gray}
 label-unfocused-padding = 1
 
 label-urgent = %icon%!
-label-urgent-background = #bd2c40
+label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
 label-empty = %icon%
-label-empty-foreground = #444
+label-empty-foreground = ${colors.dark-gray}
 label-empty-padding = 1
-
 
 label-visible = %name%
 lable-visible-padding = 1
+
+
 
 [module/wifi]
 type = internal/network
 interface = wlo1
 interval = 3.0
-;udspeed-minwidth = 0
-;
+accumulate-stats = true
+
 format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = " "
-format-connected-prefix-foreground = #666
-label-connected = %downspeed% %essid:7%
-;format-disconnected = <label-disconnected>
-;format-disconnected-prefix = " "
-;format-disconnected-prefix-foreground = #666
-;label-disconnected = not connected
-;label-disconnected-foreground = #999
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %downspeed% %essid%
 
 ramp-signal-0 = 
-ramp-signal-foreground = #666
+ramp-signal-foreground = ${colors.foreground}
 lable-connected-padding = 2
+
+
 
 [module/xbacklight]
 ;type = internal/xbacklight
@@ -196,15 +133,17 @@ label = 
 
 bar-width = 10
 bar-indicator = |
-bar-indicator-foreground = #ff
+bar-indicator-foreground = ${colors.white}
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.purple}
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.foreground}
 format-padding = 1
+
+
 
 [module/filesystem]
 type = internal/fs
@@ -212,67 +151,65 @@ interval = 25
 
 mount-0 = /
 format-mounted-prefix = " "
-format-mounted-foreground = #666
+format-mounted-prefix-foreground = ${colors.foreground}
 label-mounted = %percentage_used%%
-label-mounted-foreground = ${root.foreground}
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = #666
+label-unmounted-foreground = ${colors.red}
 format-mounted-padding = 1
 format-unmounted-padding = 1
 
+
+
 [module/date]
 type = internal/date
-label =  %{F#666} %{F-} %date%  %{F#e60053}%{F-} %time%
+label =  %{F#6495ED} %{F-} %date%  %{F#800000}%{F-} %time%
 date = %Y-%m-%d
-time = %H:%M
-interval = 5
+time = %I:%M
+interval = 30
 format-foreground = ${colors.foreground}
 format-padding = 1
 
-[module/volume]
-type = internal/alsa
 
+
+[module/volume]
+type = internal/pulseaudio
+sink = bluez_sink.28_11_A5_33_5D_5E.a2dp_sink
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
-format-muted-foreground = #666
+format-muted-prefix-foreground = ${colors.foreground}
 label-muted = Muted
+label-muted-foreground = ${colors.red}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-ramp-volume-foreground = #666
+ramp-volume-foreground = ${colors.foreground}
 
 format-muted-padding = 1
 format-volume-padding = 1
+
 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #666
-;format-underline = #f90000
+format-prefix-foreground = ${colors.foreground}
 label = %percentage%%
-label-foreground = ${root.foreground}
 format-padding = 1
+
+
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #666
-;format-underline = #4bffdc
+format-prefix-foreground = ${colors.foreground}
 label = %percentage_used%%
-label-foreground = ${root.foreground}
 format-padding = 1
 
-[module/separator]
-type = custom/text
-content = |
-content-foreground = #4e4e4e
 
 
 [module/battery]
@@ -287,25 +224,34 @@ format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
 
 format-full = <label-full>
-format-full-prefix =  
-format-full-prefix-foreground = #55aa55
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.dark-green}
 
 ramp-capacity-0 =  
 ramp-capacity-1 =  
 ramp-capacity-2 =   
 ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1-foreground = #666
-ramp-capacity-2-foreground = #55aa55
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-2-foreground = ${colors.dark-green}
 
 animation-charging-0 =  
 animation-charging-1 =   
 animation-charging-2 =  
-animation-charging-foreground = #55aa55
-animation-charging-framerate = 750
+animation-charging-foreground = ${colors.dark-green}
+animation-charging-framerate = 120
 
 format-full-padding = 1
 format-charging-padding = 1
 format-discharging-padding = 1
+
+
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.dark-foreground}
+
+
 
 [settings]
 screenchange-reload = true

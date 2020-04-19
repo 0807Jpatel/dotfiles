@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-mkdir -p "${XDG_CACHE_HOME}"/i3
-echo "---- STARTUP $(date +"%Y-%m-%d %H:%M:%S") ----" > "${XDG_CACHE_HOME}"/i3/stdout
-echo "---- STARTUP $(date +"%Y-%m-%d %H:%M:%S") ----" > "${XDG_CACHE_HOME}"/i3/stderr
-exec /usr/bin/i3 >> "${XDG_CACHE_HOME}"/i3/stdout 2>> "${XDG_CACHE_HOME}"/i3/stderr
